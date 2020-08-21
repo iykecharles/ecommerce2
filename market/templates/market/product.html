@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <!--Product-->
+
+  <div class="container">
+    <h3 class="product-text">Products</h3>
+    <!--sort-->
+    <!-- drop down -->
+    <div class="btn-group mr-auto mt-5">
+      <button type="button" class="btn btn-success">Sort Item</button>
+      <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Sort by price</a>
+        <a class="dropdown-item" href="#">Sort by type</a>
+        <a class="dropdown-item" href="#">Sort by category</a>
+        <a class="dropdown-item" href="#">Sort by colour</a>
+        <a class="dropdown-item" href="#">Sort by date</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Show all</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car1/pexels-pavlo-luchkovski-337909.jpg" width="250px" height="350px">
+        </a>
+
+        <a href="{% url 'market-details' item.id %}">
+          <h6>{{ item.title }}</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car/2020_bmw_x6_4dr-suv_m50i_fq_oem_2_1600.jpg" width="250px" height="350px">
+        </a>
+
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car/40a68fe2c11a050260f59c406ee20d45.jpg" width="250px" height="350px">
+        </a>
+
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>    
+
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card">
+        <!--Card-->
+        <img src="/static/market/car/hqdefault.jpg" alt="">
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car1/pexels-pavlo-luchkovski-337909.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car/2020_bmw_x6_4dr-suv_m50i_fq_oem_2_1600.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car/40a68fe2c11a050260f59c406ee20d45.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car/hqdefault.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card">
+        <!--Card-->
+        <img src="/static/market/car/hqdefault.jpg" alt="">
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car1/pexels-pavlo-luchkovski-337909.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car1/pexels-mike-116675.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car1/pexels-erik-mclean-4062200.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="#">
+          <img src="/static/market/car1/pexels-aaron-curtis-119435.jpg" width="250px" height="350px">
+        </a>
+      
+        <a href="#">
+          <h6>Title</h6>
+        </a>
+        <h6>Blue printed T-shirt</h6>
+        <h6>$300</h6>
+      </div>
+
+    </div>
+  </div>
+ 
+{% endblock %}

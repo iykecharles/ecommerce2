@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- {{ item.image.url }} -->
+
+  <div class="container">
+    <div class="row">
+      {% for item in object_list %}      
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 card text-center">
+        <!--Card-->
+        <a href="{% url 'market-details' item.id %}">
+          <img src="/static/amazon-t2.jpg" width="250px" height="350px">
+          
+        </a>
+      
+        <a href="{% url 'market-details' item.id %}">
+          <h6>{{ item.title }}</h6>
+        </a>
+        <h6>{{ item.label }} {{ item.sizes }}</h6>
+        {% if item.discount_price %}
+         <span><h6>${{ item.discount_price }} <del class="alert-danger">${{ item.price }}</del> </h6></span>
+        {% else %}
+         <h6>${{ item.price }}</h6>
+        {% endif %}
+        
+      
+      </div>
+      {% endfor %}
+      
+      
+    </div>
+  </div>
+  <div style="height: 50px; color: white; background-color: black; text-align: center;" class="text-center h1">
+    <h3>Exclusively Available on CarlesSOS</h3>
+  </div>
+  <div class="container exclusive">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"">
+        <img src="/static/market/71sesDsw95L._AC_SL1500_.jpg" alt="">
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <p>Exclusively Available on CarlesSOS</p>
+        <h1>2025 Mac laptop</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem explicabo sapiente nobis culpa. Nam cum molestiae sint! Temporibus, quaerat cumque! Explicabo velit ipsam saepe, eum vel praesentium alias ea possimus minima asperiores, quae, minus maxime? Laboriosam cupiditate quae nihil dolore.</p>
+        <a class="btn btn-success" href="">Buy Now</a>
+      </div>
+    </div>
+  </div>
+  <div style="height: 50px; color: white; background-color: black; text-align: center;" class="text-center h1">
+    <h3>Customer Reviews</h3>
+  </div>
+  <div class="container feedback">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 card text-center">
+        <!--Card-->
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-left-quote" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M14 1H2a1 1 0 0 0-1 1v11.586l2-2A2 2 0 0 1 4.414 11H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+          <path fill-rule="evenodd"
+            d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
+        </svg>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero natus commodi excepturi dolor! Tempora repellat soluta exercitationem eveniet aliquid cupiditate consectetur totam perferendis eius maxime illum voluptas sequi, reiciendis veritatis accusantium est similique laudantium! Non minus culpa nam, enim fuga iure consequuntur odio? Asperiores atque dicta earum debitis impedit explicabo?</p>
+        <div class=""><img class="" src="/car1/mw65406.jpg" alt=""></div>
+        <h6><strong>Customer name</strong></h6>      
+      
+      
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 card text-center">
+        <!--Card-->
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-left-quote" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M14 1H2a1 1 0 0 0-1 1v11.586l2-2A2 2 0 0 1 4.414 11H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+          <path fill-rule="evenodd"
+            d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
+        </svg>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero natus commodi excepturi dolor!
+          Tempora repellat soluta exercitationem eveniet aliquid cupiditate consectetur totam perferendis eius maxime illum
+          voluptas sequi, reiciendis veritatis accusantium est similique laudantium! Non minus culpa nam, enim fuga iure
+          consequuntur odio? Asperiores atque dicta earum debitis impedit explicabo?</p>
+        <div><img class="" src="/car1/gettyimages-1149479212-612x612.jpg" alt=""></div>
+        <h6><strong>Customer name</strong></h6>
+      
+      
+      
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 card text-center">
+        <!--Card-->
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-left-quote" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M14 1H2a1 1 0 0 0-1 1v11.586l2-2A2 2 0 0 1 4.414 11H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+          <path fill-rule="evenodd"
+            d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
+        </svg>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero natus commodi excepturi dolor!
+          Tempora repellat soluta exercitationem eveniet aliquid cupiditate consectetur totam perferendis eius maxime illum
+          voluptas sequi, reiciendis veritatis accusantium est similique laudantium! Non minus culpa nam, enim fuga iure
+          consequuntur odio? Asperiores atque dicta earum debitis impedit explicabo?</p>
+        <div><img class="" src="/car1/gettyimages-1149479212-612x612.jpg" alt=""></div>
+        <h6><strong>Customer name</strong></h6>
+        
+      {% if is_paginated %}
+        {% if page_obj.has_previous %}
+          <a class="btn btn-sm" href="?page=1">First</a>
+          <a class="btn btn-sm" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+            <a class="btn btn-sm" href="?page={{ num }}">{{ num }}</a>
+          {% elif num < page_obj.number|add:"2" and num > page_obj.number|add:"-2" %}
+            <a class="btn btn-sm" href="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <a class="btn btn-sm" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+          <a class="btn btn-sm" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+      {% endif %}
+      
+      
+      </div>
+{% endblock %}
+

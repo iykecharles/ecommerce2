@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+  <div class="container">    
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h3 class="mt-4">CheckoutForm</h3>
+        <h5 class="text-center mt-3">Shipping_Address</h5>
+        <form method="POST" class="card-body">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="inputAddress">shipping_address1</label>
+            <input type="text" class="form-control" id="shipping_address1" name="shipping_address1" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">shipping_address2</label>
+            <input type="text" class="form-control" id="shipping_address2" name="shipping_address2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-row">                        
+            <div class="col-lg-4 col-md-12 mb-4">            
+              <label for="country">Country</label>
+              {{ form.shipping_country }}
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">shipping_zip</label>
+              <input type="text" class="form-control" id="shipping_zip" name="shipping_zip">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="same_billing_address" name="same_billing_address">
+              <label class="form-check-label" for="same_billing_address">
+                Billing address is the same as my
+                shipping address
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="set_default_shipping" name="set_default_shipping" >
+              <label class="form-check-label" for="set_default_shipping">
+                Save as default shipping address
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="use_default_shipping" name="use_default_shipping">
+              <label class="form-check-label" for="use_default_shipping">
+                Use default shipping address
+              </label>
+            </div>
+          </div>
+          <h5 class="text-center mt-4">Billing_Address</h5>
+          <div class="form-group mt-2">
+            <label for="inputAddress">billing_address1</label>
+            <input type="text" class="form-control" id="billing_address1" name="billing_address1" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">billing_address2</label>
+            <input type="text" class="form-control" id="billing_address2" name="billing_address2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-row">
+            <div class="col-lg-4 col-md-12 mb-4">
+              <label for="country">Country</label>
+              {{ form.billing_country }}
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">billing_zip</label>
+              <input type="text" class="form-control" id="billing_zip" name="billing_zip">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="set_default_billing" name="set_default_billing">
+              <label class="form-check-label" for="set_default_billing">
+                Save as default billing address
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="use_default_billing" name="use_default_billing">
+              <label class="form-check-label" for="use_default_billing">
+                Use default billing address
+              </label>
+            </div>
+          </div>
+          <div class="d-block my-3">
+            {% for value, name in form.fields.payment_type.choices %}
+            <div class="custom-control custom-radio">
+              <input id="{{ name }}" name="payment_type" value="{{ value }}" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+            </div>
+            {% endfor %}
+          
+          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="container blue">
+      <div class="row">
+        <div class="col-8 offset-2 table1">
+          <h3><strong>Order Summary</strong></h3>
+          <table class="table table-hover table-dark table-bordered">
+            <thead>
+              <th scope="col">#</th>
+              <th scope="col">Item title</th>
+              <th scope="col">Price</th>
+              <th scope="col">Discount Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total Item Price</th>
+              <th scope="col">Trash</th>
+            </thead>
+            {% for order_item in order.items.all %}
+            <tbody>
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ order_item.item.title }}</td>
+                <td>{{ order_item.item.price }}</td>
+                <td>{{ order_item.item.discount_price }}</td>
+                <td><a href="{% url 'remove_single_item_cart' order_item.item.id %}"><i
+                      class="fas fa-minus mr-2"></i></a>{{ order_item.quantity }}<a
+                    href="{% url 'add_to_cart' order_item.item.id %}"><i class="fas fa-plus ml-2"></i></a></td>
+    
+                <td>{% if order_item.item.discount_price %}
+                  {{ order_item.individual_discount_total|truncatechars:9 }}
+                  {% elif order_item.item.price %}
+                  {{ order_item.individual_total }}
+                  {% endif %}
+    
+                </td>
+                <td><a href="{% url 'remove_from_cart' order_item.item.id %}"><i class="far fa-trash-alt"></i></a></td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+          
+          
+    
+    
+    
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

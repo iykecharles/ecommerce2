@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+  
+  <!--Product-->
+
+  <div class="container pdetails col-8 offset-2"> 
+    
+    
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+        <!--Card-->
+        
+          <img src="/static/market/car1/mw65406.jpg" width="100%" height="350px">
+             
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <!--Card-->
+        <p><span>{{ object.label }}  {{ object.sizes }} </span> </p>
+        <h1>{{ object.title|upper }}</h1>
+
+        <h6 class="mt-4 mb-4">{% if object.discount_price %}
+          ${{ object.discount_price }} <del class="alert-info">${{ object.price }}</del>
+        {% else %}
+          <span>${{ object.price }}</span>
+        {% endif %}
+        
+        </h6>
+        <select class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <option>select sizes</option>
+          <option>XXL</option>
+          <option>XL</option>
+          <option>L</option>
+          <option>M</option>
+          <option>S</option>
+        </select>
+        <div>
+        <input class="col-xs-2 col-sm-2 col-md-2 col-lg-2 " type="number" value="1">
+        <a class="btn btn-info btn-sm btnt" href="">Add to Cart<i class="fas fa-shopping-cart"></i></a></div>
+        <h5 class="mt-3">Product Description</h5>
+        <p>{{ item.description }}</p>
+        <span> <a class="btn btn-danger mr-2" href="{% url 'remove_from_cart' object.id %}">REMOVE FROM CART</a>
+        <a class="btn btn-success ml-2" href="{% url 'add_to_cart' object.id %}">ADD TO CART</a></span>
+        
+      </div>
+    
+    </div>
+
+  </div>
+
+
+
+{% endblock %}

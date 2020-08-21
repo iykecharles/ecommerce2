@@ -1,0 +1,177 @@
+{% load static %}
+{% load cart_template_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'market/style.css' %}">
+  <link rel="stylesheet" href="{% static 'market/bootstrap.min.css' %}">  
+  <link rel="stylesheet" href="{% static 'market/fontawesome.min.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>ecommerce</title>
+  {% block extra_head %}
+  {% endblock %}
+</head>
+<body>
+  <!--Nav bar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" href="{% url 'market' %}"><strong>$C</strong><small>mart</small></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse navbar1" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'market' %}">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Products<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'order-summary' %}"><i class="fas fa-shopping-cart"></i>Cart<span class="text-black-50 ml-2 mr-2">{{ request.user|cart_counter }}</span></a>
+        </li>       
+        
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'profile' %}">Profile<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'logout' %}">logout<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'password-reset' %}">Password-Change<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled text-success" href="#">You are signed in</a>
+        </li>
+        {% else %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'register' %}">Register<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'login' %}">Login<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled text-warning" href="#">You are not signed in</a>
+        </li>
+        {% endif %}
+      </ul>      
+    </div>
+  </nav>
+
+ 
+    <div class="row text-center">
+      <div class="col-12 alert-success">
+        {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        {% endif %}
+
+      </div>
+    </div>
+ 
+
+  {% block content %}
+  {% endblock %}
+
+
+
+
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12">
+        <p>ppp</p>
+        {% if is_paginated %}
+          {% if page_obj.has_previous %}
+            <a class="btn btn-sm" href="?page=1">First</a>
+            <a class="btn btn-sm" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          {% endif %}
+  
+          {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+              <a class="btn btn-sm" href="?page={{ num }}">{{ num }}</a>
+            {% elif num < page_obj.number|add:"2" and num > page_obj.number|add:"-2" %}
+              <a class="btn btn-sm" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
+  
+          {% if page_obj.has_next %}
+            <a class="btn btn-sm" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            <a class="btn btn-sm" href="?page={{ page_obj.next_page_number }}">Next</a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+ 
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-12">
+  
+        {% if is_paginated %}
+        {% if page_obj.has_previous %}
+        <a class="btn btn-sm btn-cyan" href="?page=1">First</a>
+        <a class="btn btn-sm btn-cyan" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+  
+        {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+        <a class="btn btn-sm btn-blue-grey" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:"-2" and num < page_obj.number|add:"2" %}
+        <a class="btn btn-sm btn-blue-grey" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+  
+        {% if page_obj.has_next %}
+        <a class="btn btn-sm btn-cyan" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-sm btn-cyan" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+  
+        {% endif %}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+    </div>
+  </div>
+
+  
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  
+</body>
+</html>
+{% include "market/footer.html" %}
+
+
